@@ -11,6 +11,9 @@ REFRESH_RATE = 0.01
 CLOCK_COLOR = ft.colors.BROWN_300
 ACTIVE_COLOR = ft.colors.AMBER_100
 DISABLED_COLOR = ft.colors.GREY_400
+TEXT_COLOR_DEFAULT = ft.colors.BLACK
+TEXT_COLOR_FLAGGED = ft.colors.RED
+BORDER_RADIUS = ft.border_radius.all(20)
 
 
 class ButtonControl(ft.UserControl):
@@ -26,7 +29,7 @@ class ButtonControl(ft.UserControl):
         self.container = ft.Container(
             expand=True,
             bgcolor=self.button_color,
-            border_radius=ft.border_radius.all(20),
+            border_radius=BORDER_RADIUS,
             padding=20,
             on_click=self.on_click,
             content=ft.Column(
@@ -51,9 +54,9 @@ class ButtonControl(ft.UserControl):
     @property
     def time_remaining_color(self):
         if self.time_remaining <= timedelta(0):
-            return ft.colors.RED
+            return TEXT_COLOR_FLAGGED
         else:
-            return ft.colors.BLACK
+            return TEXT_COLOR_DEFAULT
         
     @property
     def is_flagged(self):
@@ -112,7 +115,7 @@ class ClockControl(ft.UserControl):
         self.container = ft.Container(
             expand=True,
             bgcolor=CLOCK_COLOR,
-            border_radius=ft.border_radius.all(20),
+            border_radius=BORDER_RADIUS,
             padding=20,
             content=ft.Row(
                 expand=True,
